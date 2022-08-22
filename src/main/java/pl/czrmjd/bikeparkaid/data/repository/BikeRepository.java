@@ -4,12 +4,14 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 import pl.czrmjd.bikeparkaid.data.entity.BikeEntity;
 
+import java.util.List;
+
 //repozytoria jpa sluza do interakcji z baza danych (wykonywac operacje CRUD)
 
 @Repository
 public interface BikeRepository extends JpaRepository<BikeEntity, Integer> {
     /*tutaj bardzo wazna jest nazwa metody. jest to metoda generyczna ktora pozwala w zaleznosci od slow kluczowych w nazwie generowac \
     * odpowiednie zapytania sql*/
-    BikeEntity findByBrand(String brand);
-    BikeEntity findByModel(String model);
+    List<BikeEntity> findBySize(String size);
+
 }

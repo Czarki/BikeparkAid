@@ -1,10 +1,10 @@
-package pl.czrmjd.bikeparkaid;
+package com.example.bikeparkaid;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class BikeparkAidApplicationTests {
+class BikeParkAidApplicationTests {
 
     @Test
     void contextLoads() {

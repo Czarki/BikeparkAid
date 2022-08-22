@@ -13,4 +13,9 @@ public class BikeDto {
     private BikeSize size;
     private BigDecimal price;
     private boolean isAvailable;
+
+    public BikeDto(Integer id, String brand,
+                   String model, BikeSize valueOf,
+                   BigDecimal price) {
+    }
 }

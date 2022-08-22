@@ -14,5 +14,6 @@ public interface OrderRepository extends JpaRepository<OrderEntity, Integer> {
     /*tutaj bardzo wazna jest nazwa metody. jest to metoda generyczna ktora pozwala w zaleznosci od slow kluczowych w nazwie generowac \
     * odpowiednie zapytania sql*/
     List<OrderEntity> findAllByTrainingId(Integer trainingId);
+    List<OrderEntity> findAllByBikeId(Integer bikeId);
 
 }

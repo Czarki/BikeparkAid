@@ -29,4 +29,24 @@ public class OrderDto {
     public Integer getTrainingId() {
         return trainingId;
     }
+
+    public void setPassId(Integer passId) {
+        this.passId = passId;
+    }
+
+    public void setBikeId(Integer bikeId) {
+        this.bikeId = bikeId;
+    }
+
+    public void setBikeDateStart(String bikeDateStart) {
+        this.bikeDateStart = bikeDateStart;
+    }
+
+    public void setBikeDateEnd(String bikeDateEnd) {
+        this.bikeDateEnd = bikeDateEnd;
+    }
+
+    public void setTrainingId(Integer trainingId) {
+        this.trainingId = trainingId;
+    }
 }
