@@ -1,10 +1,12 @@
 package pl.czrmjd.bikeparkaid.remote.model;
 
+import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 import lombok.Getter;
 import java.math.BigDecimal;
 
 @NoArgsConstructor
+@AllArgsConstructor
 @Getter
 public class BikeDto {
     private Integer id;
@@ -14,8 +16,17 @@ public class BikeDto {
     private BigDecimal price;
     private boolean isAvailable;
 
-    public BikeDto(Integer id, String brand,
-                   String model, BikeSize valueOf,
-                   BigDecimal price) {
+
+
+    @Override
+    public String toString() {
+        return "BikeDto{" +
+                "id=" + id +
+                ", brand='" + brand + '\'' +
+                ", model='" + model + '\'' +
+                ", size=" + size +
+                ", price=" + price +
+                ", isAvailable=" + isAvailable +
+                '}';
     }
 }

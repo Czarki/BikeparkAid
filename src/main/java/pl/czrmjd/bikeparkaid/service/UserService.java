@@ -52,7 +52,7 @@ public class UserService extends RuntimeException {
     public boolean checkExistUserByEmailAndPassword(String email, String password) {
         String passwordHash = passwordEncoder.encode(password);
         UserEntity user = getUserByEmail(email);
-        if (user != null && user.getHash().equals(passwordHash)) {
+        if (user != null && passwordEncoder.matches(password, user.getHash())) {
             return true;
         } else {
             return false;

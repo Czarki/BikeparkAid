@@ -36,4 +36,16 @@ public class BikeEntity {
     private BigDecimal price; //było string, ale jak wtedy wykonywać operacje na bazie?
     @Column(name = "is_available")
     private boolean isAvailable;
+
+    @Override
+    public String toString() {
+        return "BikeEntity{" +
+                "id=" + id +
+                ", brand='" + brand + '\'' +
+                ", model='" + model + '\'' +
+                ", size='" + size + '\'' +
+                ", price=" + price +
+                ", isAvailable=" + isAvailable +
+                '}';
+    }
 }

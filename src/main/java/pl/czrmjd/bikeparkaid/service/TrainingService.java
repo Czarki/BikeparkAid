@@ -34,7 +34,7 @@ public class TrainingService {
                     continue;
                 }
                 result.add(new TrainingDto(trainingEntity.getId(), trainingEntity.getName(),
-                    TrainingType.valueOf(trainingEntity.getType()),
+                    TrainingType.valueOf(trainingEntity.getType().toUpperCase()),
                     DateUtils.convertToString(trainingEntity.getDateStart()),
                     DateUtils.convertToString(trainingEntity.getDateEnd()),
                     trainingEntity.getDuration(), trainingEntity.getPrice()));

@@ -33,4 +33,8 @@ public class UserEntity {
     private boolean accountConfirmed;
     @Column(name = "is_admin")
     private boolean isAdmin;
+    @Column(name = "address")
+    private String address;
+    @Column(name = "tel_number")
+    private String number;
 }

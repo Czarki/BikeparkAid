@@ -1,6 +1,10 @@
 package pl.czrmjd.bikeparkaid.remote.model;
 
+import lombok.AllArgsConstructor;
+
 import java.math.BigDecimal;
+
+@AllArgsConstructor
 
 public class TrainingDto {
     private Integer id;
@@ -11,20 +15,6 @@ public class TrainingDto {
     private Integer duration;
     private BigDecimal price;
 
-
-    public TrainingDto() {
-    }
-
-    public TrainingDto(Integer id, String name, TrainingType type, String dateStart,
-                       String dateEnd, Integer duration, BigDecimal price) {
-        this.id = id;
-        this.name = name;
-        this.type = type;
-        this.dateStart = dateStart;
-        this.dateEnd = dateEnd;
-        this.duration = duration;
-        this.price = price;
-    }
 
     public Integer getId() {
         return id;

@@ -12,4 +12,6 @@ public class User {
     private final String lastName;
     private final String email;
     private final boolean isAdmin;
+    private final String address;
+    private final String telNumber;
 }

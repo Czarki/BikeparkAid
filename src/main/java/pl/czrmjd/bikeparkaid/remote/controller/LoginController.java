@@ -20,7 +20,7 @@ public class LoginController {
     }
 
     @PostMapping //get/post + mapping
-    public ResponseEntity<LoginResponseDto> register(
+    public ResponseEntity<LoginResponseDto> login(
         @RequestHeader("X-AUTH-EMAIL") String email,
         @RequestHeader("X-AUTH-PASSWORD") String password) throws Exception {
 

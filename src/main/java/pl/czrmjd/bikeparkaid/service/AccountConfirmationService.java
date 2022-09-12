@@ -1,7 +1,9 @@
 package pl.czrmjd.bikeparkaid.service;
 
+import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import pl.czrmjd.bikeparkaid.data.entity.VerificationTokenEntity;
+import pl.czrmjd.bikeparkaid.data.repository.VerificationTokenRepository;
 import pl.czrmjd.bikeparkaid.remote.model.RegistrationDto;
 
 import java.nio.charset.Charset;
@@ -10,7 +12,11 @@ import java.util.Random;
 import java.util.concurrent.TimeUnit;
 
 @Service
+@AllArgsConstructor
+
 public class AccountConfirmationService {
+
+    private final VerificationTokenRepository tokenRepository;
 
     //metoda generująca token dla nowo stworzonego konta
     public String generateConfirmationToken() {
@@ -25,9 +31,11 @@ public class AccountConfirmationService {
         Date now = new Date();
         VerificationTokenEntity token = new VerificationTokenEntity();
         token.setToken(generateConfirmationToken());
-        token.setConfirmedAt(now);
+        token.setCreatedAt(now);
         token.setExpiresAt(new Date(now.getTime() + TimeUnit.DAYS.toMillis(1)));
         token.setUserEmail(registrationDto.getEmail());
+        tokenRepository.save(token);
+
     }
 
 //    //metoda sprawdzająca czy konto z danym emailem jest juz potwierdzone

@@ -20,7 +20,7 @@ public class PassService {
     public List<PassDto> getPasses() {
         List<PassEntity> passEntities = passRepository.findAll();
         return passEntities.stream()
-            .map(passEntity -> new PassDto(passEntity.getId(), PassType.valueOf(passEntity.getType()),
+            .map(passEntity -> new PassDto(passEntity.getId(), PassType.valueOf(passEntity.getType().toUpperCase()),
                 passEntity.getPrice()))
             .collect(Collectors.toList());
     }
