@@ -21,23 +21,48 @@ public class TrainingService {
     }
 
     public List<TrainingDto> getAvailableTrainings(Date dateStart, Date dateEnd, TrainingType type) {
-        List<TrainingEntity> trainingEntities = trainingRepository.findAllByType(type.name());
+
+        List<TrainingEntity> trainingEntities = trainingRepository.findAllByType(type.name().toLowerCase());
+        for (TrainingEntity te : trainingEntities) {
+            System.out.println(te);
+        }
 
         List<TrainingDto> result = new ArrayList<>();
+
         for (TrainingEntity trainingEntity : trainingEntities) {
+
             List<OrderEntity> orderEntities = orderRepository.findAllByTrainingId(trainingEntity.getId());
-            for (OrderEntity orderEntity : orderEntities) {
-                if ((orderEntity.getDateStart().before(dateStart) && orderEntity.getDateEnd().after(dateStart)) ||
-                    (orderEntity.getDateStart().before(dateEnd) && orderEntity.getDateEnd().after(dateEnd)) ||
-                    (orderEntity.getDateStart().after(dateStart) && orderEntity.getDateEnd().before(dateEnd))) {
-//                    nie mozemy dodac poniewaz istnieje zamowienie w tym czasie
-                    continue;
-                }
+
+            if (orderEntities.isEmpty()) {
+
                 result.add(new TrainingDto(trainingEntity.getId(), trainingEntity.getName(),
-                    TrainingType.valueOf(trainingEntity.getType().toUpperCase()),
-                    DateUtils.convertToString(trainingEntity.getDateStart()),
-                    DateUtils.convertToString(trainingEntity.getDateEnd()),
-                    trainingEntity.getDuration(), trainingEntity.getPrice()));
+                        TrainingType.valueOf(trainingEntity.getType().toUpperCase()),
+                        DateUtils.convertToString(trainingEntity.getDateStart()),
+                        DateUtils.convertToString(trainingEntity.getDateEnd()),
+                        trainingEntity.getDuration(), trainingEntity.getPrice()));
+            } else {
+
+                boolean canAddTraining = true;
+
+                for (OrderEntity orderEntity : orderEntities) {
+                    if ((orderEntity.getDateStart().before(dateStart) && orderEntity.getDateEnd().after(dateStart)) ||
+                            (orderEntity.getDateStart().before(dateEnd) && orderEntity.getDateEnd().after(dateEnd)) ||
+                            (orderEntity.getDateStart().after(dateStart) && orderEntity.getDateEnd().before(dateEnd))) {
+//                    nie mozemy dodac poniewaz istnieje zamowienie w tym czasie
+                        canAddTraining = false;
+                        break;
+                    }
+            }
+                if (canAddTraining) {
+                    result.add(new TrainingDto(trainingEntity.getId(), trainingEntity.getName(),
+                            TrainingType.valueOf(trainingEntity.getType().toUpperCase()),
+                            DateUtils.convertToString(trainingEntity.getDateStart()),
+                            DateUtils.convertToString(trainingEntity.getDateEnd()),
+                            trainingEntity.getDuration(), trainingEntity.getPrice()));
+                }
+
+
+
             }
         }
         return result;

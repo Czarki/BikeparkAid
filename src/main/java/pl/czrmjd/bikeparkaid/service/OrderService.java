@@ -18,21 +18,19 @@ public class OrderService {
     }
 
     //metoda zapisująca zamówienie w bazie
-    public void create(PassEntity pass, BikeEntity bike,    //Zmiana na integer itd, bez sensu cały obiekt
+    public void create(Integer passId, Integer bikeId,    //Zmiana na integer itd, bez sensu cały obiekt
                                 Date dateStart, Date dateEnd,
                                 TrainingEntity training) {
 
         OrderEntity order = new OrderEntity();
-        order.setPassId(pass.getId());
-        order.setBikeId(bike.getId());                      //Tu też sprawdzenie dostępności treningów i rowerów
+        order.setPassId(passId);
+        order.setBikeId(bikeId);                      //Tu też sprawdzenie dostępności treningów i rowerów
         order.setDateStart(dateStart);
         order.setDateEnd(dateEnd);
         order.setTrainingId(training.getId());
         orderRepository.save(order);
 
     }
-
-
 
 
 }
