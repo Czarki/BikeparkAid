@@ -7,6 +7,7 @@ import pl.czrmjd.bikeparkaid.data.entity.VerificationTokenEntity;
 import pl.czrmjd.bikeparkaid.data.repository.UserRepository;
 import pl.czrmjd.bikeparkaid.data.repository.VerificationTokenRepository;
 import pl.czrmjd.bikeparkaid.remote.model.RegistrationDto;
+import pl.czrmjd.bikeparkaid.sender.EmailSender;
 
 import java.util.Date;
 
@@ -18,14 +19,16 @@ public class UserService extends RuntimeException {
     private final UserRepository userRepository;
     private final VerificationTokenRepository verificationTokenRepository;
     private final AccountConfirmationService accountConfirmationService;
+    private final EmailSender emailSender;
 
     public UserService(PasswordEncoder passwordEncoder, UserRepository userRepository,
                        VerificationTokenRepository verificationTokenRepository,
-                       AccountConfirmationService accountConfirmationService) {
+                       AccountConfirmationService accountConfirmationService, EmailSender emailSender) {
         this.passwordEncoder = passwordEncoder;
         this.userRepository = userRepository;
         this.verificationTokenRepository = verificationTokenRepository;
         this.accountConfirmationService = accountConfirmationService;
+        this.emailSender = emailSender;
     }
 
     //    metoda do umieszczenia uzytkownika w bazie danych
@@ -44,8 +47,8 @@ public class UserService extends RuntimeException {
             user.setAdmin(false);
             userRepository.save(user);
         }
-        accountConfirmationService.storeToken(registrationDto);
-
+        String tokenBody = accountConfirmationService.storeToken(registrationDto);
+        emailSender.sendEmail(registrationDto.getEmail(), tokenBody);
     }
 
     //    metoda sprawdzajaca czy istnieje w bazie user o takim emailu i hasle
