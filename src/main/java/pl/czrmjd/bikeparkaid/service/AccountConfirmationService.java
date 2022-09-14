@@ -6,9 +6,7 @@ import pl.czrmjd.bikeparkaid.data.entity.VerificationTokenEntity;
 import pl.czrmjd.bikeparkaid.data.repository.VerificationTokenRepository;
 import pl.czrmjd.bikeparkaid.remote.model.RegistrationDto;
 
-import java.nio.charset.Charset;
-import java.util.Date;
-import java.util.Random;
+import java.util.*;
 import java.util.concurrent.TimeUnit;
 
 @Service
@@ -20,22 +18,22 @@ public class AccountConfirmationService {
 
     //metoda generująca token dla nowo stworzonego konta
     public String generateConfirmationToken() {
-        byte[] array = new byte[7]; //
-        new Random().nextBytes(array);
-        String token = new String(array, Charset.forName("UTF-8"));
-        return token;
+        return UUID.randomUUID().toString();
     }
 
     //metoda umieszczajaca token w bazie danych
-    public void storeToken(RegistrationDto registrationDto) {
+    public String storeToken(RegistrationDto registrationDto) {
         Date now = new Date();
         VerificationTokenEntity token = new VerificationTokenEntity();
-        token.setToken(generateConfirmationToken());
+        String tokenBody = generateConfirmationToken();
+
+        token.setToken(tokenBody);
         token.setCreatedAt(now);
         token.setExpiresAt(new Date(now.getTime() + TimeUnit.DAYS.toMillis(1)));
         token.setUserEmail(registrationDto.getEmail());
         tokenRepository.save(token);
 
+        return tokenBody;
     }
 
 //    //metoda sprawdzająca czy konto z danym emailem jest juz potwierdzone
