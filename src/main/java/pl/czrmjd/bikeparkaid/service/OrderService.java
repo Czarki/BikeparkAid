@@ -29,13 +29,18 @@ public class OrderService {
     //metoda zapisująca zamówienie w bazie
     public ResponseEntity<String> create(Integer passId, Integer bikeId,
                                          Date dateStart, Date dateEnd,
-                                         Integer trainingId) {
+                                         Integer trainingId, Integer userId) {
 
         Optional<BikeEntity> bikeOpt = bikeRepository.findById(bikeId);
         if (bikeOpt.isEmpty()) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST)
                 .body("Nie istnieje rower o podanym id");
         }
+        if (!bikeOpt.get().isAvailable()) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+                .body("Rower o podanym id nie jest dostępny");
+        }
+
 // sprawdzamy czy istnieje juz zamowienie na rower w tym czasie
         List<OrderEntity> orderEntities = orderRepository.findAllByBikeId(bikeId);
 
@@ -76,6 +81,7 @@ public class OrderService {
         order.setDateEnd(dateEnd);
         order.setTrainingId(trainingId);
         order.setPrice(BigDecimal.valueOf(orderPrice));
+        order.setUserId(userId);
         orderRepository.save(order);
         return ResponseEntity.status(HttpStatus.CREATED)
             .body("Zamowienie zostało utworzone");

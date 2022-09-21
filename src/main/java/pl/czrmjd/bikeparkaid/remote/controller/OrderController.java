@@ -33,7 +33,7 @@ public class OrderController {
             orderDto.getBikeId(),
             convertToDate(orderDto.getBikeDateStart()),
             convertToDate(orderDto.getBikeDateEnd()),
-            orderDto.getTrainingId());
+            orderDto.getTrainingId(), userId);
 
     }
 }
