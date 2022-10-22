@@ -23,11 +23,4 @@ public class RegistrationController {
         return ResponseEntity.status(HttpStatus.CREATED)
             .build(); //.body zawiera od razu .build
     }
-
-    @GetMapping("/confirm")
-    public ResponseEntity<Void> confirmAccount(@RequestParam("token") String token) {
-        userService.confirmAccount(token);
-        return ResponseEntity.status(HttpStatus.NO_CONTENT)
-            .build();
-    }
 }

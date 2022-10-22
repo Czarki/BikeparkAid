@@ -21,7 +21,7 @@ public class EmailGenerator {
         String template = FileUtils.readFileAsText("/email/email.html");
 
         String htmlMsg = template.replace("#{content}", "Zarejestrowałeś sie w BikeparkAid. Potwierdż konto klikając w link: ")
-                .replace("#{url}", "http://localhost:8080/api/v1/registration/confirm?token=" + token);
+                .replace("#{url}", "http://localhost:8080/api/v1/account-confirmation/" + token);
 
         MimeMultipart mimeMultipart = new MimeMultipart();
         MimeBodyPart htmlBodyPart = createHtmlPart(htmlMsg);

@@ -38,17 +38,17 @@ public class BikeService {
 
             if (orderEntities.isEmpty()) {
                 result.add(new BikeDto(bikeEntity.getId(), bikeEntity.getBrand(),
-                        bikeEntity.getModel(), BikeSize.valueOf(bikeEntity.getSize()),
-                        bikeEntity.getPrice(), bikeEntity.isAvailable()));
+                    bikeEntity.getModel(), BikeSize.valueOf(bikeEntity.getSize()),
+                    bikeEntity.getPrice(), bikeEntity.isAvailable()));
             } else {
 
                 boolean canAddBike = true;
 
                 for (OrderEntity orderEntity : orderEntities) {
 
-                    if ((orderEntity.getDateStart().before(dateStart) && orderEntity.getDateEnd().after(dateStart)) ||
-                            (orderEntity.getDateStart().before(dateEnd) && orderEntity.getDateEnd().after(dateEnd)) ||
-                            (orderEntity.getDateStart().after(dateStart) && orderEntity.getDateEnd().before(dateEnd))) {
+                    if ((orderEntity.getDateStart().before(dateEnd) && orderEntity.getDateEnd().after(dateStart)) ||
+                        (orderEntity.getDateStart().before(dateStart) && orderEntity.getDateEnd().after(dateStart)) ||
+                        (orderEntity.getDateStart().before(dateEnd) && orderEntity.getDateEnd().after(dateEnd))) {
                         canAddBike = false;
 //                    nie mozemy dodac poniewaz istnieje zamowienie w tym czasie
                         break;
@@ -59,8 +59,8 @@ public class BikeService {
 
 
                     result.add(new BikeDto(bikeEntity.getId(), bikeEntity.getBrand(),
-                            bikeEntity.getModel(), BikeSize.valueOf(bikeEntity.getSize()),
-                            bikeEntity.getPrice(), bikeEntity.isAvailable()));
+                        bikeEntity.getModel(), BikeSize.valueOf(bikeEntity.getSize()),
+                        bikeEntity.getPrice(), bikeEntity.isAvailable()));
                 }
             }
 

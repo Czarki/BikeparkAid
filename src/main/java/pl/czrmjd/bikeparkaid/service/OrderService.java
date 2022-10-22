@@ -45,9 +45,9 @@ public class OrderService {
         List<OrderEntity> orderEntities = orderRepository.findAllByBikeId(bikeId);
 
         for (OrderEntity orderEntity : orderEntities) {
-            if ((orderEntity.getDateStart().before(dateStart) && orderEntity.getDateEnd().after(dateStart)) ||
-                (orderEntity.getDateStart().before(dateEnd) && orderEntity.getDateEnd().after(dateEnd)) ||
-                (orderEntity.getDateStart().after(dateStart) && orderEntity.getDateEnd().before(dateEnd))) {
+            if ((orderEntity.getDateStart().before(dateEnd) && orderEntity.getDateEnd().after(dateStart)) ||
+                (orderEntity.getDateStart().before(dateStart) && orderEntity.getDateEnd().after(dateStart)) ||
+                (orderEntity.getDateStart().before(dateEnd) && orderEntity.getDateEnd().after(dateEnd))) {
 //                istnieje juz zamowienie w tym czasie
                 return ResponseEntity.status(HttpStatus.BAD_REQUEST)
                     .body("Podany rower jest zarezerwowany pomiedzy datami start i end");

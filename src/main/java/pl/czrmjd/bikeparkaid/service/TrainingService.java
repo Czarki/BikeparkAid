@@ -45,9 +45,9 @@ public class TrainingService {
                 boolean canAddTraining = true;
 
                 for (OrderEntity orderEntity : orderEntities) {
-                    if ((orderEntity.getDateStart().before(dateStart) && orderEntity.getDateEnd().after(dateStart)) ||
-                            (orderEntity.getDateStart().before(dateEnd) && orderEntity.getDateEnd().after(dateEnd)) ||
-                            (orderEntity.getDateStart().after(dateStart) && orderEntity.getDateEnd().before(dateEnd))) {
+                    if ((orderEntity.getDateStart().before(dateEnd) && orderEntity.getDateEnd().after(dateStart)) ||
+                        (orderEntity.getDateStart().before(dateStart) && orderEntity.getDateEnd().after(dateStart)) ||
+                        (orderEntity.getDateStart().before(dateEnd) && orderEntity.getDateEnd().after(dateEnd))) {
 //                    nie mozemy dodac poniewaz istnieje zamowienie w tym czasie
                         canAddTraining = false;
                         break;
