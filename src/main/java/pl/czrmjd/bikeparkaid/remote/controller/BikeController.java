@@ -9,6 +9,7 @@ import pl.czrmjd.bikeparkaid.service.DateUtils;
 import java.util.List;
 
 @RestController
+@CrossOrigin
 @RequestMapping(value = "/api/v1/bikes")
 public class BikeController {
     private final BikeService bikeService;

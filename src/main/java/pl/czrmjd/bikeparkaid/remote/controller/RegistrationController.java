@@ -7,6 +7,7 @@ import pl.czrmjd.bikeparkaid.remote.model.RegistrationDto;
 import pl.czrmjd.bikeparkaid.service.UserService;
 
 @RestController
+@CrossOrigin
 @RequestMapping(value = "/api/v1/registration") //{} placeholder @REQUESTbody, @requestparam, @pathvariable
 public class RegistrationController {
     private final UserService userService;

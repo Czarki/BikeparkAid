@@ -9,6 +9,7 @@ import pl.czrmjd.bikeparkaid.service.AccessTokenService;
 import pl.czrmjd.bikeparkaid.service.UserService;
 
 @RestController
+@CrossOrigin
 @RequestMapping(value = "/api/v1/login")
 public class LoginController {
     private final UserService userService;

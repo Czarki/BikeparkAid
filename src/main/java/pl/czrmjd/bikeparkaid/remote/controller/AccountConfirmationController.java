@@ -5,6 +5,7 @@ import org.springframework.web.bind.annotation.*;
 import pl.czrmjd.bikeparkaid.service.UserService;
 
 @RestController
+@CrossOrigin
 @RequestMapping(value = "/api/v1/account-confirmation")
 public class AccountConfirmationController {
     private final UserService userService;

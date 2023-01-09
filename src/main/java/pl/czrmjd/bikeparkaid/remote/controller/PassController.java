@@ -10,6 +10,7 @@ import java.util.List;
 
 //powinnismy uzywac liczby mnogiej , zmieniłem pass na passes
 @RestController
+@CrossOrigin
 @RequestMapping(value = "/api/v1/passes")
 public class PassController {
     private final PassService passService;

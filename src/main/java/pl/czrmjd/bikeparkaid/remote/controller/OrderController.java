@@ -11,6 +11,7 @@ import static pl.czrmjd.bikeparkaid.service.DateUtils.convertToDate;
 
 
 @RestController
+@CrossOrigin
 @RequestMapping(value = "/api/v1/orders")
 public class OrderController {
     private final AccessTokenService accessTokenService;

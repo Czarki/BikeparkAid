@@ -9,6 +9,7 @@ import pl.czrmjd.bikeparkaid.service.TrainingService;
 import java.util.List;
 
 @RestController
+@CrossOrigin
 @RequestMapping(value = "/api/v1/date-training")
 public class TrainingController {
     private final TrainingService trainingService;
