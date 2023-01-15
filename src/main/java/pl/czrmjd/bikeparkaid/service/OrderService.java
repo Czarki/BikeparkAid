@@ -71,7 +71,7 @@ public class OrderService {
         }
 
 //        teraz liczymy cene roweru
-        long daysBetween = ChronoUnit.DAYS.between(dateStart.toInstant(), dateEnd.toInstant());
+        long daysBetween = ChronoUnit.DAYS.between(dateStart.toInstant(), dateEnd.toInstant()) + 1;
         double bikePrice = bikeOpt.get().getPrice().doubleValue() * daysBetween;
 
 //        teraz liczymy cene calego zamowienia
