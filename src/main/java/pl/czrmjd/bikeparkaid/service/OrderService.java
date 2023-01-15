@@ -30,6 +30,10 @@ public class OrderService {
     public ResponseEntity<String> create(Integer passId, Integer bikeId,
                                          Date dateStart, Date dateEnd,
                                          Integer trainingId, Integer userId) {
+        if (dateStart.after(dateEnd)) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+                .body("Data końcowa nie może być wcześniejsza niż data początkowa");
+        }
 
         Optional<BikeEntity> bikeOpt = bikeRepository.findById(bikeId);
         if (bikeOpt.isEmpty()) {

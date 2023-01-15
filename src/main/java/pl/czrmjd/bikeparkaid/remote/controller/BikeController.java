@@ -32,8 +32,8 @@ public class BikeController {
 //        wykorzystamy taki YYYY-mm-dd HH:mm:ss np. (2022-04-28 15:35:39)
 //        te stringi (daty) bedziemy zamieniac pozniej na obiekty javove reprezentujace daty np. klasa Date
 
-        List<BikeDto> bikes = bikeService.getAvailableBikes(DateUtils.convertToDate(dateStart),
-                DateUtils.convertToDate(dateEnd), size);
+        List<BikeDto> bikes = bikeService.getAvailableBikes(DateUtils.convertToDateStart(dateStart),
+                DateUtils.convertToDateEnd(dateEnd), size);
         return ResponseEntity.ok()
             .body(bikes);
     }

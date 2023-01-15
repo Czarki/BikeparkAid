@@ -4,11 +4,8 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import pl.czrmjd.bikeparkaid.remote.model.TrainingType;
-
 import javax.persistence.*;
 import java.math.BigDecimal;
-import java.time.Period;
 import java.util.Date;
 
 

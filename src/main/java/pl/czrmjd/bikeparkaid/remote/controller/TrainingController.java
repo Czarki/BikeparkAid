@@ -23,8 +23,8 @@ public class TrainingController {
                                                           @RequestParam String dateEnd,
                                                           @RequestParam TrainingType type) {
 
-        List<TrainingDto> trainingDtos = trainingService.getAvailableTrainings(DateUtils.convertToDate(dateStart),
-            DateUtils.convertToDate(dateEnd), type);
+        List<TrainingDto> trainingDtos = trainingService.getAvailableTrainings(DateUtils.convertToDateStart(dateStart),
+            DateUtils.convertToDateEnd(dateEnd), type);
         return ResponseEntity.ok()
             .body(trainingDtos);
     }

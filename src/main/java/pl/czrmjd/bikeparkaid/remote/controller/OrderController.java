@@ -3,12 +3,12 @@ package pl.czrmjd.bikeparkaid.remote.controller;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.w3c.dom.ls.LSOutput;
 import pl.czrmjd.bikeparkaid.remote.model.OrderDto;
 import pl.czrmjd.bikeparkaid.service.AccessTokenService;
 import pl.czrmjd.bikeparkaid.service.OrderService;
 
-import static pl.czrmjd.bikeparkaid.service.DateUtils.convertToDate;
+import static pl.czrmjd.bikeparkaid.service.DateUtils.convertToDateEnd;
+import static pl.czrmjd.bikeparkaid.service.DateUtils.convertToDateStart;
 
 
 @RestController
@@ -40,8 +40,8 @@ public class OrderController {
         System.out.println(userId);
         return orderService.create(orderDto.getPassId(),
             orderDto.getBikeId(),
-            convertToDate(orderDto.getBikeDateStart()),
-            convertToDate(orderDto.getBikeDateEnd()),
+            convertToDateStart(orderDto.getBikeDateStart()),
+            convertToDateEnd(orderDto.getBikeDateEnd()),
             orderDto.getTrainingId(), userId);
 
     }

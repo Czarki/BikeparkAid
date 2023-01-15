@@ -36,10 +36,10 @@ public class TrainingService {
             if (orderEntities.isEmpty()) {
 
                 result.add(new TrainingDto(trainingEntity.getId(), trainingEntity.getName(),
-                        TrainingType.valueOf(trainingEntity.getType().toUpperCase()),
-                        DateUtils.convertToString(trainingEntity.getDateStart()),
-                        DateUtils.convertToString(trainingEntity.getDateEnd()),
-                        trainingEntity.getDuration(), trainingEntity.getPrice()));
+                    TrainingType.valueOf(trainingEntity.getType().toUpperCase()),
+                    DateUtils.convertToString(trainingEntity.getDateStart()),
+                    DateUtils.convertToString(trainingEntity.getDateEnd()),
+                    trainingEntity.getDuration(), trainingEntity.getPrice()));
             } else {
 
                 boolean canAddTraining = true;
@@ -52,15 +52,14 @@ public class TrainingService {
                         canAddTraining = false;
                         break;
                     }
-            }
+                }
                 if (canAddTraining) {
                     result.add(new TrainingDto(trainingEntity.getId(), trainingEntity.getName(),
-                            TrainingType.valueOf(trainingEntity.getType().toUpperCase()),
-                            DateUtils.convertToString(trainingEntity.getDateStart()),
-                            DateUtils.convertToString(trainingEntity.getDateEnd()),
-                            trainingEntity.getDuration(), trainingEntity.getPrice()));
+                        TrainingType.valueOf(trainingEntity.getType().toUpperCase()),
+                        DateUtils.convertToString(trainingEntity.getDateStart()),
+                        DateUtils.convertToString(trainingEntity.getDateEnd()),
+                        trainingEntity.getDuration(), trainingEntity.getPrice()));
                 }
-
 
 
             }
